@@ -3,7 +3,7 @@ package com.example.ktgk_2415141122119_nguyentanthang
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ktgk_2415141122119_nguyentanthang.databinding.ActivityMainBinding
-
+import android.content.Intent
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding_119: ActivityMainBinding
@@ -61,7 +61,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding_119.btnXemChiTiet119.setOnClickListener {
-            thongBao_119("Mở màn hình chi tiết khoản chi")
+            val tenTruyen_119 = binding_119.edtTenKhoanChi119.text.toString().trim()
+            val tienTruyen_119 = binding_119.edtSoTien119.text.toString().trim().toDoubleOrNull() ?: -1.0
+            val ghiChuTruyen_119 = binding_119.edtMoTaKhoanChi119.text.toString().trim()
+            val trangThaiTruyen_119 = binding_119.chkDaThanhToan119.isChecked
+
+            val intentChiTiet_119 = Intent(this, ChiTietChiTieuActivity::class.java).apply {
+                putExtra("EXTRA_TEN_119", tenTruyen_119)
+                putExtra("EXTRA_SOTIEN_119", tienTruyen_119)
+                putExtra("EXTRA_GHICHU_119", ghiChuTruyen_119)
+                putExtra("EXTRA_DATHANHTOAN_119", trangThaiTruyen_119)
+            }
+            startActivity(intentChiTiet_119)
         }
     }
 }
