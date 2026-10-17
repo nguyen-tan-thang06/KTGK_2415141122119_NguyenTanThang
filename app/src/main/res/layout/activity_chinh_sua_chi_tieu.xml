@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="CHỈNH SỬA KHOẢN CHI"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/edtSuaTen_119"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên khoản chi"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtSuaSoTien_119"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Số tiền"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtSuaGhiChu_119"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Ghi chú"
+        android:inputType="text" />
+
+    <CheckBox
+        android:id="@+id/chkSuaDaThanhToan_119"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Đã thanh toán" />
+
+    <Button
+        android:id="@+id/btnLuuChinhSua_119"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Lưu chỉnh sửa" />
+
+    <Button
+        android:id="@+id/btnHuyChinhSua_119"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Hủy chỉnh sửa" />
+
+</LinearLayout>
