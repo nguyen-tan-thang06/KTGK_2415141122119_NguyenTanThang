@@ -25,7 +25,15 @@ class MainActivity : AppCompatActivity() {
             val soTien_119 = binding_119.edtSoTien119.text.toString().trim().toDoubleOrNull()
 
             if (!kiemTraHopLe_119(tenKhoanChi_119, soTien_119)) {
-                thongBao_119("Tên không được để trống và số tiền phải > 0!")
+                val khoanChiMoi_119 = KhoanChi(
+                    maKhoanChi = "KC_119",
+                    tenKhoanChi = tenKhoanChi_119,
+                    soTien = soTien_119!!,
+                    ghiChu = binding_119.edtGhiChu119.text.toString().trim(),
+                    daThanhToan = binding_119.chkDaThanhToan119.isChecked
+                )
+                com.example.ktgk_2415141122119_nguyentanthang.repository.KhoanChiRepository.khoanChiHienTai_119 = khoanChiMoi_119
+                thongBao_119("Đã thêm:\n${khoanChiMoi_119.layThongTin()}")
                 return@setOnClickListener
             }
 

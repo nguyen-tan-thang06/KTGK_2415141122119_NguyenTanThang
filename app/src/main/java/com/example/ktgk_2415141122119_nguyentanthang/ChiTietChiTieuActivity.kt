@@ -58,13 +58,13 @@ class ChiTietChiTieuActivity : AppCompatActivity() {
     }
 
     private fun hienThiChiTiet_119() {
-        if (!kiemTraHopLe_119(tenKhoanChi_119, soTien_119)) {
+        val khoanChi_119 = KhoanChi("KC_119", tenKhoanChi_119, soTien_119, moTaKhoanChi_119, daThanhToan_119)
+        if (khoanChi_119.tenKhoanChi.isBlank() || !khoanChi_119.laSoTienHopLe()) {
             binding_119.tvThongTinChiTiet119.text = "Cảnh báo: Thiếu tên khoản chi hoặc số tiền không hợp lệ!"
             thongBao_119("Dữ liệu khoản chi không hợp lệ!")
         } else {
-            val trangThai_119 = if (daThanhToan_119) "Đã thanh toán" else "Chưa thanh toán"
-            binding_119.tvThongTinChiTiet119.text =
-                "Tên khoản chi: $tenKhoanChi_119\nSố tiền: $soTien_119 VNĐ\nGhi chú: $moTaKhoanChi_119\nTrạng thái: $trangThai_119"
+            com.example.ktgk_2415141122119_nguyentanthang.repository.KhoanChiRepository.khoanChiHienTai_119 = khoanChi_119
+            binding_119.tvThongTinChiTiet119.text = khoanChi_119.layThongTin()
         }
     }
 }
