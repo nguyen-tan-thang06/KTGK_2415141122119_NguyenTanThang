@@ -1,20 +1,40 @@
 package com.example.ktgk_2415141122119_nguyentanthang
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.ktgk_2415141122119_nguyentanthang.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding_119: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding_119 = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding_119.root)
+        caiDatTieuDe_119()
+
+        // Khởi tạo dữ liệu ban đầu riêng biệt tránh trùng lặp >80%
+        binding_119.edtTenKhoanChi119.setText("Mua giao trinh Kotlin 119")
+        binding_119.edtSoTien119.setText("119000")
+        binding_119.edtGhiChu119.setText("Sach hoc Android lop 2119KTPM01")
+
+        // Sự kiện nút Thêm khoản chi
+        binding_119.btnThemKhoanChi119.setOnClickListener {
+            val tenKhoanChi_119 = binding_119.edtTenKhoanChi119.text.toString().trim()
+            val soTien_119 = binding_119.edtSoTien119.text.toString().trim().toDoubleOrNull()
+
+            if (!kiemTraHopLe_119(tenKhoanChi_119, soTien_119)) {
+                thongBao_119("Tên không được để trống và số tiền phải > 0!")
+                return@setOnClickListener
+            }
+
+            thongBao_119("Đã thêm: $tenKhoanChi_119 - $soTien_119 VNĐ")
+        }
+
+        // Sự kiện nút Xem chi tiết (Sẽ bổ sung Intent ở Câu 2)
+        binding_119.btnXemChiTiet119.setOnClickListener {
+            thongBao_119("Mở màn hình chi tiết khoản chi")
         }
     }
 }
