@@ -13,7 +13,21 @@ class ChiTietChiTieuActivity : AppCompatActivity() {
     private var daThanhToan_119: Boolean = false
 
     // (VỊ TRÍ 1: Lát nữa ở Câu 3 sẽ thêm boNhanKetQua_119 tại đây)
-
+    private val boNhanKetQua_119 = registerForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
+    ) { ketQua_119 ->
+        if (ketQua_119.resultCode == android.app.Activity.RESULT_OK && ketQua_119.data != null) {
+            val duLieu_119 = ketQua_119.data!!
+            tenKhoanChi_119 = duLieu_119.getStringExtra("TEN_119") ?: tenKhoanChi_119
+            soTien_119 = duLieu_119.getDoubleExtra("TIEN_119", soTien_119)
+            moTaKhoanChi_119 = duLieu_119.getStringExtra("GHICHU_119") ?: moTaKhoanChi_119
+            daThanhToan_119 = duLieu_119.getBooleanExtra("THANHTOAN_119", daThanhToan_119)
+            hienThiChiTiet_119()
+            thongBao_119("Cập nhật khoản chi thành công!")
+        } else {
+            thongBao_119("Đã hủy chỉnh sửa, giữ nguyên dữ liệu ban đầu!")
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding_119 = ActivityChiTietChiTieuBinding.inflate(layoutInflater)
@@ -29,7 +43,15 @@ class ChiTietChiTieuActivity : AppCompatActivity() {
         hienThiChiTiet_119()
 
         // (VỊ TRÍ 2: Lát nữa ở Câu 3 sẽ thêm sự kiện btnMoChinhSua119 tại đây)
-
+        binding_119.btnMoChinhSua119.setOnClickListener {
+            val intentSua_119 = android.content.Intent(this, ChinhSuaChiTieuActivity::class.java).apply {
+                putExtra("TEN_119", tenKhoanChi_119)
+                putExtra("TIEN_119", soTien_119)
+                putExtra("GHICHU_119", moTaKhoanChi_119)
+                putExtra("THANHTOAN_119", daThanhToan_119)
+            }
+            boNhanKetQua_119.launch(intentSua_119)
+        }
         binding_119.btnQuayLai119.setOnClickListener {
             finish()
         }
