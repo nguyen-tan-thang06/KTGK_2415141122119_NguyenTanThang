@@ -39,7 +39,14 @@ class MainActivity : AppCompatActivity() {
 
             thongBao_119("Đã thêm: $tenKhoanChi_119 - $soTien_119 VNĐ")
         }
-
+        override fun onResume() {
+            super.onResume()
+            val kc_119 = com.example.ktgk_2415141122119_nguyentanthang.repository.KhoanChiRepository.khoanChiHienTai_119
+            binding_119.edtTenKhoanChi119.setText(kc_119.tenKhoanChi)
+            binding_119.edtSoTien119.setText(kc_119.soTien.toString())
+            binding_119.edtGhiChu119.setText(kc_119.ghiChu)
+            binding_119.chkDaThanhToan119.isChecked = kc_119.daThanhToan
+        }
         // SỬA ĐOẠN NÀY TRONG MainActivity.kt:
         binding_119.btnXemChiTiet119.setOnClickListener {
             val intent_119 = Intent(this, ChiTietChiTieuActivity::class.java).apply {
