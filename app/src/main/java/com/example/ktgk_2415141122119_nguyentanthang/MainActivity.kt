@@ -32,9 +32,15 @@ class MainActivity : AppCompatActivity() {
             thongBao_119("Đã thêm: $tenKhoanChi_119 - $soTien_119 VNĐ")
         }
 
-        // Sự kiện nút Xem chi tiết (Sẽ bổ sung Intent ở Câu 2)
+        // SỬA ĐOẠN NÀY TRONG MainActivity.kt:
         binding_119.btnXemChiTiet119.setOnClickListener {
-            thongBao_119("Mở màn hình chi tiết khoản chi")
+            val intent_119 = Intent(this, ChiTietChiTieuActivity::class.java).apply {
+                putExtra("TEN_119", binding_119.edtTenKhoanChi119.text.toString().trim())
+                putExtra("TIEN_119", binding_119.edtSoTien119.text.toString().trim().toDoubleOrNull() ?: -1.0)
+                putExtra("GHICHU_119", binding_119.edtGhiChu119.text.toString().trim())
+                putExtra("THANHTOAN_119", binding_119.chkDaThanhToan119.isChecked)
+            }
+            startActivity(intent_119)
         }
     }
 }
